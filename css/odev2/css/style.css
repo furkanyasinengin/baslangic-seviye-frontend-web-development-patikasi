@@ -1,0 +1,46 @@
+.bg-green {
+    background-color: rgb(112, 204, 194);
+}
+
+footer {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.boxes {
+    width: 70%;
+    margin: auto;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: row;
+}
+
+.footerBox1 {
+    width: 30%;
+    margin-right: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.footerBox2 {
+    width: 20%;
+    margin-right: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.footerBox3 {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.search {
+    margin: auto;
+    width: 70%;
+    background: #EEEEEE;
+}
