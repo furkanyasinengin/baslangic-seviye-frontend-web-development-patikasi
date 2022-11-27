@@ -17,3 +17,18 @@ function getSecondLargest(nums) {
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 console.log(getSecondLargest(arr)
 )
+
+function reverseString(s) {
+    try {
+        let reverseString = s.split('').reverse().join('');
+
+        console.log(reverseString);
+    }
+    catch (error) {
+        console.log(error.message);
+        console.log(s);
+    }
+
+}
+
+reverseString(Number(1234))
