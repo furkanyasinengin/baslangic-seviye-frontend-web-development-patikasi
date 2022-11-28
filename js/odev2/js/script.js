@@ -66,6 +66,20 @@ function newElement() {
     listDOM.append(liDOM);
     inputTaskDOM.value = "";
     localStorage.setItem("listElements", JSON.stringify(listElements));
+    let toastDOM = document.querySelector("#liveToastSuccess");
+    toastDOM.classList.add("show");
+    toastDOM.classList.remove("hide");
+    document
+      .querySelector("#liveToastSuccess>div>button")
+      .addEventListener("click", closeToastAlert);
+  } else {
+    let toastDOM = document.querySelector("#liveToastWarning");
+    //console.log(document.querySelector("#liveToastWarning>div>button"));
+    document
+      .querySelector("#liveToastWarning>div>button")
+      .addEventListener("click", closeToastAlert);
+    toastDOM.classList.add("show");
+    toastDOM.classList.remove("hide");
   }
 }
 
@@ -112,4 +126,9 @@ function closeListElement() {
     1
   );
   localStorage.setItem("listElements", JSON.stringify(listElements));
+}
+
+function closeToastAlert() {
+  this.parentElement.parentElement.classList.add("hide");
+  this.parentElement.parentElement.classList.remove("show");
 }
