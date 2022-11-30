@@ -28,7 +28,7 @@ const menu = [
     title: "Dan Dan Mian",
     category: "China",
     price: 5.99,
-    img: "https://www.savingdessert.com/wp-content/uploads/2019/02/Dan-Dan-Noodles-10.jpg",
+    img: "https://thewoksoflife.com/wp-content/uploads/2014/11/dan-dan-noodles-12.jpg",
     desc: `Dan dan noodle, serving with green onion `,
   },
   {
@@ -75,14 +75,72 @@ const menu = [
 
 const filterList = ["All", "Korea", "Japan", "China"];
 
+const menuItem = (item) => {
+  let menuContain = `
+  <div class="row">
+    <div class="col-4 d-flex justify-content-center">
+      <img
+        class="photo"
+        src="${item.img}"
+        alt=""
+      />
+    </div>
+    <div class="col-8">
+      <div class="row menu-items">
+        <div
+          class="col-6 d-flex justify-content-start menu-title"
+        >
+          <h4>${item.title}</h4>
+        </div>
+        <div
+          class="col-6 d-flex justify-content-end menu-title"
+        >
+          <h4>${item.price}</h4>
+        </div>
+        <!-- <hr /> -->
+        <p class="menu-info">
+          ${item.desc}
+        </p>
+      </div>
+    </div>
+  </div>
+  `;
+
+  let menuItemDOM = document.createElement("div");
+  menuItemDOM.classList.add("col-6", "mb-3");
+  menuItemDOM.innerHTML = menuContain;
+  return menuItemDOM;
+};
+//buttonları oluşturmak için fonksiyon
 function buttons(filterElement) {
   let buttonDivDOM = document.querySelector(".btn-container");
   let buttonDOM = document.createElement("button");
   buttonDOM.classList.add("btn-item");
+  buttonDOM.addEventListener("click", buttonClick);
   buttonDOM.innerHTML = filterElement;
   buttonDivDOM.append(buttonDOM);
 }
-
+//butonları oluşturmak için buton dizisindekileri elemanların map işlemi
 filterList.map((item) => {
   buttons(item);
 });
+
+//sayfa yüklendiğinde ve butonlara basıldığında çalışan fonksiyon
+function showMenu(filter) {
+  let menuItemsDivDOM = document.querySelector(".section-center");
+  menuItemsDivDOM.replaceChildren(); //div içindeki elemanları buttonlara basıldıkça alta alta eklenmesin diye siler
+
+  menu.map((item) => {
+    if (filter == "All" || item.category == filter) {
+      menuItemsDivDOM.append(menuItem(item));
+    }
+  });
+}
+
+//buttonlara basıldığında menu elemanalarının ekrana gelmesini sağlayan fonksiyonu çağırır
+function buttonClick() {
+  showMenu(this.innerHTML);
+}
+
+//sayfa yüklendiğinde tüm elemanların ekrana gelmesi için çalışır
+showMenu("All");
